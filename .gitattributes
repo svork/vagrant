@@ -1,0 +1,8 @@
+# .gitattributes
+# Files should end with Line Feed instead of CRLF
+
+*.txt text eol=lf
+*.sh text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.py text eol=lf
