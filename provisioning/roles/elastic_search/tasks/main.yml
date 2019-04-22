@@ -1,0 +1,24 @@
+---
+# tasks file for elastic_search
+- name: Install Elasticsearch
+  apt:
+    name: elasticsearch
+    state: latest
+    force_apt_get: yes
+    update_cache: yes
+  tags: elastic_search
+
+- name: Deploy Elasticsearch configuration file
+  template:
+    src: elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+  notify: "Restart Elasticsearch"
+  tags: elastic_search
+
+- name: Start Elasticsearch at boot time
+  service:
+    name: elasticsearch.service
+    state: started
+    enabled: yes
+  tags: elastic_search
+...

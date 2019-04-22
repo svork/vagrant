@@ -1,0 +1,8 @@
+---
+# handlers file for elastic_search
+- name: Restart Elasticsearch
+  service:
+    name: elasticsearch.service
+    state: restarted
+  listen: "Restart Elasticsearch"
+  tags: elastic_search

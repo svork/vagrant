@@ -1,0 +1,22 @@
+---
+# handlers file for roles/beats
+- name: Restart Metricbeat
+  service:
+    name: metricbeat.service
+    state: restarted
+  listen: "Restart Metricbeat"
+  tags: beats
+
+- name: Restart Filebeat
+  service:
+    name: filebeat.service
+    state: restarted
+  listen: "Restart Filebeat"
+  tags: beats
+
+- name: Restart Hearbeat
+  service:
+    name: heartbeat-elastic.service
+    state: restarted
+  listen: "Restart Heartbeat"
+  tags: beats

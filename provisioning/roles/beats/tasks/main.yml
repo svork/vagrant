@@ -1,0 +1,68 @@
+---
+# tasks file for beats
+- name: Install Metricbeat
+  apt:
+    name: metricbeat
+    state: latest
+    force_apt_get: yes
+    update_cache: yes
+  tags: beats
+
+- name: Start Metricbeat at boot time
+  service:
+    name: metricbeat.service
+    state: started
+    enabled: yes
+  tags: beats
+
+- name: Metricbeat configuration file
+  template:
+    src: metricbeat.yml.j2
+    dest: /etc/metricbeat/metricbeat.yml
+  notify: "Restart Metricbeat"
+  tags: beats
+
+- name: Install Filebeat
+  apt:
+    name: filebeat
+    state: latest
+    force_apt_get: yes
+    update_cache: yes
+  tags: beats
+
+- name: Start Filebeat at boot time
+  service:
+    name: filebeat.service
+    state: started
+    enabled: yes
+  tags: beats
+
+- name: Filebeat configuration file
+  template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+  notify: "Restart Filebeat"
+  tags: beats
+
+- name: Install Heartbeat
+  apt:
+    name: heartbeat-elastic
+    state: latest
+    force_apt_get: yes
+    update_cache: yes
+  tags: beats
+
+- name: Start Heartbeat at boot time
+  service:
+    name: heartbeat-elastic.service
+    state: started
+    enabled: yes
+  tags: beats
+
+- name: Heartbeat configuration file
+  template:
+    src: heartbeat.yml.j2
+    dest: /etc/heartbeat/heartbeat.yml
+  notify: "Restart Heartbeat"
+  tags: beats
+...

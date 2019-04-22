@@ -1,0 +1,31 @@
+---
+# tasks file for common
+- name: Import Elastic PGP key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    id: 46095ACC8548582C1A2699A9D27D666CD88E42B4
+    state: present
+  tags: common
+
+- name: Make sure 'apt-transport-https' is installed
+  apt:
+    name: apt-transport-https
+    state: latest
+    update_cache: yes
+    force_apt_get: yes
+  tags: common
+
+- name: Verify if Elastic repository file exists
+  stat:
+    path: /etc/apt/sources.list.d/elastic-7.x.list
+  register: st
+  tags: common
+
+- name: Add Elastic repository if not exists
+  copy:
+    src: elastic-7.x.list
+    dest: /etc/apt/sources.list.d
+    mode: 0644
+  when: st.stat.exists == False
+  tags: common
+...
