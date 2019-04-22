@@ -6,4 +6,7 @@
 # Ignore the .vagrant directory
 .vagrant/
 
+# Ignore the html directory
+html
+
 
