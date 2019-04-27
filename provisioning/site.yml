@@ -1,6 +1,6 @@
 ---
 - name: Deploy the Elastic Stack
-  hosts: elasticVM
+  hosts: vm1
   become: yes
 
   roles:
@@ -8,5 +8,12 @@
   - elastic_search
   - kibana
   - logstash
+
+- name: Deploy the Elastic Stack (Beats)
+  hosts: vm2
+  become: yes
+
+  roles:
+  - common
   - beats
 ...
