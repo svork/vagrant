@@ -4,6 +4,9 @@ Vagrant.require_version ">=2.2.4"
 # Virtual machine name
 VM_NAME = "elasticVM"
 
+# Virtual machine private IP address
+VM_PRIVATE_IP = "192.168.56.4"
+
 # Box definition
 Vagrant.configure("2") do |config|
   config.vm.define VM_NAME
@@ -17,7 +20,7 @@ Vagrant.configure("2") do |config|
   end
 
   # Networking
-  config.vm.network :private_network, ip: "192.168.56.4"
+  config.vm.network :private_network, ip: VM_PRIVATE_IP
   config.vm.hostname = VM_NAME
 
   # Ansible playbook details
