@@ -10,7 +10,7 @@ VM_PRIVATE_IP = "192.168.56.4"
 # Box definition
 Vagrant.configure("2") do |config|
   config.vm.define VM_NAME
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "debian/stretch64"
 
   # VM resources
   config.vm.provider :virtualbox do |vbox|
